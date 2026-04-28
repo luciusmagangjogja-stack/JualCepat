@@ -14,16 +14,126 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      products: {
+        Row: {
+          badge: Database["public"]["Enums"]["product_badge"]
+          category: Database["public"]["Enums"]["product_category"]
+          created_at: string
+          description: string
+          id: string
+          images: string[]
+          location: string
+          price: number
+          slug: string
+          status: Database["public"]["Enums"]["product_status"]
+          title: string
+          updated_at: string
+          whatsapp: string
+        }
+        Insert: {
+          badge?: Database["public"]["Enums"]["product_badge"]
+          category: Database["public"]["Enums"]["product_category"]
+          created_at?: string
+          description?: string
+          id?: string
+          images?: string[]
+          location?: string
+          price?: number
+          slug: string
+          status?: Database["public"]["Enums"]["product_status"]
+          title: string
+          updated_at?: string
+          whatsapp: string
+        }
+        Update: {
+          badge?: Database["public"]["Enums"]["product_badge"]
+          category?: Database["public"]["Enums"]["product_category"]
+          created_at?: string
+          description?: string
+          id?: string
+          images?: string[]
+          location?: string
+          price?: number
+          slug?: string
+          status?: Database["public"]["Enums"]["product_status"]
+          title?: string
+          updated_at?: string
+          whatsapp?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          hero_image: string
+          hero_subtitle: string
+          hero_title: string
+          id: number
+          instagram_url: string
+          tiktok_url: string
+          updated_at: string
+          whatsapp_admin: string
+        }
+        Insert: {
+          hero_image?: string
+          hero_subtitle?: string
+          hero_title?: string
+          id?: number
+          instagram_url?: string
+          tiktok_url?: string
+          updated_at?: string
+          whatsapp_admin?: string
+        }
+        Update: {
+          hero_image?: string
+          hero_subtitle?: string
+          hero_title?: string
+          id?: number
+          instagram_url?: string
+          tiktok_url?: string
+          updated_at?: string
+          whatsapp_admin?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      product_badge: "none" | "hot" | "baru"
+      product_category: "kost" | "kontrakan" | "motor" | "barang"
+      product_status: "available" | "sold"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +260,11 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      product_badge: ["none", "hot", "baru"],
+      product_category: ["kost", "kontrakan", "motor", "barang"],
+      product_status: ["available", "sold"],
+    },
   },
 } as const
