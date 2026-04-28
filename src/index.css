@@ -133,3 +133,15 @@
 }
 .mp-theme .shadow-mp { box-shadow: var(--shadow-card-mp); }
 .mp-theme .shadow-mp-soft { box-shadow: var(--shadow-soft); }
+.mp-theme .input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.mp-theme .input:focus { border-color: hsl(var(--primary)); }
