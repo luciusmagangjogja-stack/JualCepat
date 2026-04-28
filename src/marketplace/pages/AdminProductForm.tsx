@@ -88,15 +88,38 @@ export default function AdminProductForm() {
       return;
     }
     setSaving(true);
-    const payload = { ...parsed.data, status, badge, images };
     if (isNew) {
-      const { error } = await supabase.from("products").insert({ ...payload, slug: slugify(title) });
+      const { error } = await supabase.from("products").insert({
+        title: parsed.data.title,
+        price: parsed.data.price,
+        description: parsed.data.description,
+        category: parsed.data.category,
+        location: parsed.data.location,
+        whatsapp: parsed.data.whatsapp,
+        status,
+        badge,
+        images,
+        slug: slugify(parsed.data.title),
+      });
       setSaving(false);
       if (error) return toast.error(error.message);
       toast.success("Produk dibuat");
       nav("/marketplace/admin");
     } else {
-      const { error } = await supabase.from("products").update(payload).eq("id", id!);
+      const { error } = await supabase
+        .from("products")
+        .update({
+          title: parsed.data.title,
+          price: parsed.data.price,
+          description: parsed.data.description,
+          category: parsed.data.category,
+          location: parsed.data.location,
+          whatsapp: parsed.data.whatsapp,
+          status,
+          badge,
+          images,
+        })
+        .eq("id", id!);
       setSaving(false);
       if (error) return toast.error(error.message);
       toast.success("Produk diperbarui");
